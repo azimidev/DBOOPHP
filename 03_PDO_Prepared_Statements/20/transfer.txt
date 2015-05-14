@@ -1,0 +1,14 @@
+﻿// Set up prepared statements transfer from one account to another
+$amount = 200;
+$payer = 'John White';
+$payee = 'Jane Black';
+$debit = 'UPDATE savings SET balance = balance - :amount WHERE name = :payer';
+$credit = 'UPDATE savings SET balance = balance + :amount WHERE name = :payee';
+
+$pay = $db->prepare($debit);
+$pay->bindParam(':amount', $amount);
+$pay->bindParam(':payer', $payer);
+
+$receive = $db->prepare($credit);
+$receive->bindParam(':amount', $amount);
+$receive->bindParam(':payee', $payee);

@@ -1,0 +1,4 @@
+$makes = array('Chrysler', 'Ford', 'Toyota');
+$sql = "SELECT make, MIN(price) AS minprice, MAX(price) AS maxprice FROM cars
+        LEFT JOIN makes USING (make_id)
+        WHERE make = '$makes[0]'";
